@@ -1,5 +1,6 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+
 
 export default function Header() {
   return (
@@ -20,7 +21,7 @@ export default function Header() {
       m="2"
       fontWeight={'thin'}
       >
-        ToDo App
+        <Text as={'abbr'}>ToDo App</Text>
       </Heading>
     </Box>
   );

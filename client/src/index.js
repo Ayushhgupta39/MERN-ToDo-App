@@ -4,14 +4,19 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+// import store from "./redux/store.js";
+import store from "./redux/store"
+import Provider from "react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <ChakraProvider>
-      <App />
-    </ChakraProvider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,8 +1,10 @@
 import Express from "express";
 import connection from "./database/db.js";
+import cors from "cors";
 
 const app = Express();
 
+app.use(cors());
 connection();
 
 
