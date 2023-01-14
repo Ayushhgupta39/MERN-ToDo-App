@@ -8,12 +8,12 @@ import {
 import React from "react";
 import { useState } from "react";
 import { MdOutlinePostAdd } from "react-icons/md";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 export default function Form() {
   const [inputText, setInputText] = useState("");
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onFormSubmit = (event) => {
     event.preventDefault();
