@@ -9,7 +9,7 @@ import React from "react";
 import { useState } from "react";
 import { MdOutlinePostAdd } from "react-icons/md";
 import { useDispatch } from "react-redux";
-
+import { addNewTodo } from "../redux/actions";
 
 export default function Form() {
   const [inputText, setInputText] = useState("");
@@ -17,6 +17,10 @@ export default function Form() {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+
+    dispatch(addNewTodo(inputText));
+
+    setInputText('');
   };
 
   const onInputChange = (event) => {
@@ -31,6 +35,7 @@ export default function Form() {
               placeholder="New Task"
               variant={"flushed"}
               onChange={onInputChange}
+              value={inputText}
             />
             <InputRightElement
               children={
