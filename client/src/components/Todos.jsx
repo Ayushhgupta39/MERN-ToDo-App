@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTodos } from "../redux/actions";
+import Todo from "./Todo";
 
 
 export const Todos = () => {
@@ -19,7 +20,10 @@ export const Todos = () => {
         <ul>
             {
                 todos.map(todo => (
-                    <li>{ todo.data }</li>
+                   <Todo
+                    key={todo._id} 
+                    todo = {todo}
+                   />
                 ))
             }
         </ul>
