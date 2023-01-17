@@ -1,4 +1,4 @@
-import { Box, List, ListIcon, ListItem, Text } from "@chakra-ui/react";
+import { Box, List, ListIcon, ListItem } from "@chakra-ui/react";
 import React from "react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
