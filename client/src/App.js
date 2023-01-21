@@ -1,13 +1,17 @@
+
+import './App.css';
+
+// components
 import Header from './components/Header';
-import Form from './components/Form';
+import TodoForm from './components/TodoForm';
 import Todos from './components/Todos';
 
 function App() {
   return (
-    <div className="App">
-        <Header />
-        <Form />
-        <Todos />
+    <div>
+      <Header />
+      <TodoForm />
+      <Todos />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const TodoSchema = new mongoose.Schema({
     data: {
         type: String,
@@ -7,14 +8,14 @@ const TodoSchema = new mongoose.Schema({
     },
     done: {
         type: Boolean,
-        default: false,
+        default: false
     },
     createdAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now
     }
 })
 
-const todo = mongoose.model("todo", TodoSchema);
+const todo = mongoose.model('todo', TodoSchema);
 
 export default todo;

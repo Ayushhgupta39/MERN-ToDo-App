@@ -1,30 +1,57 @@
-import { Box, List, ListIcon, ListItem } from "@chakra-ui/react";
-import React from "react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 
-export default function Todo({ todo }) {
-  return (
-    <Box>
-      <List>
-        <ListItem
-          display={"flex"}
-          justifyContent="space-between"
-          width={{
-            base: '72',
-            md: '72',
-            xl: '96'
-          }}
-          bgColor='cyan.50'
-          p={'2'}
-          m={'2'}
+import { toggleTodo, updateTodo } from "../redux/actions";
+import { deleteTodo } from "../redux/actions";
+
+import { useDispatch } from "react-redux";
+
+const Todo = ({ todo }) => {
+
+    const [editing, setEditing] = useState(false);
+    const [text, setText] = useState(todo?.data);
+
+    const dispatch = useDispatch();
+
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+
+        setEditing(prevState => !prevState);
+
+        dispatch(updateTodo(todo._id, text))
+    }
+
+    return (
+        <li
+            className="task"
+            onClick={() => dispatch(toggleTodo(todo._id))}
+            style={{
+                textDecoration: todo?.done ? 'line-through' : '',
+                color: todo?.done ? '#bdc3c7' : '#34495e'
+            }}
+            data-testid="todo-test"
         >
-          {todo.data}
-          <Box>
-          <ListIcon as={EditIcon} />
-          <ListIcon as={DeleteIcon} />
-          </Box>
-        </ListItem>
-      </List>
-    </Box>
-  );
+            <span style={{ display: editing ? 'none' : '' }}>{todo?.data}</span>
+
+            <form
+                style={{ display: editing ? 'inline' : 'none' }}
+                onSubmit={onFormSubmit}
+            >
+                <input
+                    type="text"
+                    value={text}
+                    className="edit-todo"
+                    onChange={(e) => setText(e.target.value)}
+                />
+            </form>
+
+            <span className="icon" onClick={() => dispatch(deleteTodo(todo._id))}>
+                <i className="fas fa-trash" />
+            </span>
+            <span className="icon" onClick={() => setEditing(prevState => !prevState)}>
+                <i className="fas fa-pen" />
+            </span>
+        </li>
+    )
 }
+
+export default Todo;

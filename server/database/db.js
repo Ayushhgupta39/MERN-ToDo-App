@@ -1,23 +1,28 @@
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-dotenv.config()
-import mongoose, { mongo } from "mongoose";
 
+dotenv.config();
 
-const connection = () => {
+const USERNAME = process.env.DB_USERNAME;
+const PASSWORD = process.env.DB_PASSWORD;
 
-    mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true });
+const Connection = () => {
+
+    const MONGODB_URI = process.env.MONGO_URI
+
+    mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
     mongoose.connection.on('connected', () => {
-        console.log("Database Connected");
+        console.log('Database connected Successfully');
     })
 
     mongoose.connection.on('disconnected', () => {
-        console.log("Database disconnected");
+        console.log('Database disconnected');
     })
 
-    mongoose.connection.on("error", () => {
-        console.log("Error white connecting with Database", error.message);
+    mongoose.connection.on('error', () => {
+        console.log('Error while connecting with the database ', error.message);
     })
 }
 
-export default connection;
+export default Connection;
